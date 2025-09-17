@@ -1,23 +1,30 @@
 # python_labs
 # Лабораторная работа 1
 ## Задание 1
-![Подписать что-то](./images/lab01/01.png)
+![Код:](./images/lab01/01.png)
+![Вывод:](./images/lab01/01r.png)
 
 ## Задание 2
-![Подписать что-то](./images/lab01/02.png)
+![Код:](./images/lab01/02.png)
+![Вывод:](./images/lab01/02r.png)
 
 ## Задание 3
-![Подписать что-то](./images/lab01/03.png)
+![Код:](./images/lab01/03.png)
+![Вывод:](./images/lab01/03r.png)
 
 ## Задание 4
-![Подписать что-то](./images/lab01/04.png)
+![Код:](./images/lab01/04.png)
+![Вывод:](./images/lab01/04r.png)
 
 ## Задание 5
-![Подписать что-то](./images/lab01/05.png)
+![Код:](./images/lab01/05.png)
+![Вывод:](./images/lab01/05r.png)
 
 ## Задание 6
-![Подписать что-то](./images/lab01/06.png)
+![Код:](./images/lab01/06.png)
+![Вывод:](./images/lab01/06r.png)
 
 ## Задание 7
-![Подписать что-то](images/lab01/07.png)
+![Код:](images/lab01/07.png)
+![Вывод:](./images/lab01/07r.png)
 

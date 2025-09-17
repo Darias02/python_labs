@@ -13,8 +13,6 @@ for i in range(len(a)):
 for i in range(len(a)):
     if shag[-1]-shag[-2] == i-shag[-1]:
         sl+=a[i]
-        print(shag[-1], shag[-2], shag[-1]-shag[-2])
-        print(i, shag[-1], i-shag[-1])
         shag.append(i)
 if sl[-1] == '.': print(sl)
 else: print(sl)
