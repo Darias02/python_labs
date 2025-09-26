@@ -28,3 +28,18 @@
 ![Код:](images/lab01/07.png)
 ![Вывод:](./images/lab01/07r.png)
 
+# Лабораторная работа 2
+
+## Задание 1 - arrays
+![Код:](./images/lab02/1.png)
+![Код:](./images/lab02/11.png)
+![Вывод:](./images/lab02/1x.png)
+
+## Задание 2 - matrix
+![Код:](./images/lab02/02.png)
+![Вывод:](./images/lab01/02r.png)
+
+## Задание 3 - tuples
+![Код:](./images/lab02/3.png)
+![Вывод:](./images/lab02/3x.png)
+
