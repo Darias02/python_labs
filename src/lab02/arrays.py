@@ -33,7 +33,7 @@ for i in test_u_s:
 
 
 
-#flatten
+#flatten 
 print('\nflatten')
 fl_test = [
     [[1, 2], [3, 4]],
