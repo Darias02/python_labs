@@ -121,10 +121,9 @@ def transpose(mat: list[list[float | int]]) -> list[list]:
 for i in test_t:
     print(transpose(i))
 ```
-###row_sums
+### row_sums
 markdown
 ```python
-print('\nrow_sums')
 test_rs = [
     [[1, 2, 3], [4, 5, 6]],
     [[-1, 1], [10, -10]],
@@ -152,7 +151,6 @@ for i in test_rs:
 ### col_sums
 markdown
 ```python
-print('\ncol_sums')
 test_cs = [
     [[1, 2, 3], [4, 5, 6]],
     [[-1, 1], [10, -10]],
