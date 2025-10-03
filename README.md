@@ -32,7 +32,6 @@
 
 ## Задание 1 - arrays
 ### min_max
-markdown 
 ```python
 test_m_m = [
     [3, -1, 5, 5, 0],
@@ -49,7 +48,6 @@ for i in test_m_m:
     print(min_max(i))
 ```
 ### unique_sorted
-markdown
 ```python
 test_u_s = [
     [3, 1, 2, 1, 3],
@@ -66,7 +64,6 @@ for i in test_u_s:
 ```
 
 ### flatten
-markdown
 ```python
 fl_test = [
     [[1, 2], [3, 4]],
@@ -89,7 +86,6 @@ for i in fl_test:
 
 ## Задание 2 - matrix
 ### transpose
-markdown 
 ```python
 
 test_t = [
@@ -122,7 +118,6 @@ for i in test_t:
     print(transpose(i))
 ```
 ### row_sums
-markdown
 ```python
 test_rs = [
     [[1, 2, 3], [4, 5, 6]],
@@ -149,7 +144,6 @@ for i in test_rs:
 
 
 ### col_sums
-markdown
 ```python
 test_cs = [
     [[1, 2, 3], [4, 5, 6]],
@@ -179,7 +173,6 @@ for i in test_cs:
 ![Вывод:](./images/lab01/02r.png)
 
 ## Задание 3 - tuples
-markdown
 ```python
 test_input = [
     ("Иванов Иван Иванович", "BIVT-25", 4.6),
