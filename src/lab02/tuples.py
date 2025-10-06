@@ -19,7 +19,6 @@ def format_record(rec: tuple[str, str, float]) -> str:
         return f'{name}, гр. {gr}, GPA {gpa}'
     except:
         return TypeError
-            #len(rec)!= 3 or type(rec[0]) != str or type(rec[1]) != str or type(rec[2]) != float or len(rec[0])==0 or len(rec[1])==0 
 
 for i in test_input:
     print(format_record(i))
