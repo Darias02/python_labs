@@ -184,6 +184,8 @@ test_input = [
     ('qw', '', 53.9)
 ]
 def format_record(rec: tuple[str, str, float]) -> str: 
+    if not isinstance(rec[2], float):
+        return TypeError
     try: 
         len(rec)!= 3 or type(rec[0]) != str or type(rec[1]) != str or type(rec[2]) != float or len(rec[0])==0 or len(rec[1])==0 
     
