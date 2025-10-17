@@ -15,3 +15,37 @@ for i in tokenize_test:
 for i in count_freq__top_n_test:
     print(count_freq(i))
     print(top_n(count_freq(i)))
+
+
+def main():
+    text = sys.stdin.readline().strip()  
+    if not text:
+        print("Всего слов: 0")
+        print("Уникальных слов: 0")
+        print("Топ-5:")
+        return
+    
+    normalized = normalize(text)
+    tokens = tokenize(normalized)
+    
+    total = len(tokens)
+    unique = len(set(tokens))
+    freq_dict = count_freq(tokens)
+    top_words = top_n(freq_dict, 5)
+    
+    print(f"Всего слов: {total}")
+    print(f"Уникальных слов: {unique}")
+    print("Топ-5:")
+    for word, count in top_words:
+        print(f"{word}:{count}")
+
+if __name__ == "__main__":
+    main()
+
+
+
+
+
+
+
+

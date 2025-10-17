@@ -204,3 +204,123 @@ for i in test_input:
 ![Вывод:](./images/lab02/3x.png)
 
 
+# Лабораторная работа 3
+## text.py
+```python
+import re  
+from typing import Dict, List, Tuple
+
+def normalize(text: str, *, casefold: bool = True, replacement: bool = True) -> str:
+    if not text:
+        return ''
+    
+    
+    if casefold:
+        text = text.casefold()
+    
+    if replacement:
+        text = text.replace('ё', 'е').replace('Ё', 'Е')
+    
+    text = text.replace('\t', ' ').replace('\r', ' ').replace('\n', ' ')
+    
+    text = re.sub(r'\s+', ' ', text).strip()
+    
+    return text
+
+
+def tokenize(text: str) -> list[str]:
+    if not text:
+        return []
+    pattern = r'\w+(?:-\w+)*'
+    tokens = re.findall(pattern, text)
+    
+    return tokens
+
+def count_freq(tokens: list[str]) -> dict[str, int]:
+    freq_dict = {}
+    
+    for token in tokens:
+        freq_dict[token] = freq_dict.get(token, 0) + 1
+    return freq_dict  
+
+def top_n(freq: dict[str, int], n: int = 5) -> list[tuple[str, int]]:
+    items = list(freq.items())
+    sorted_items = sorted(items, key=lambda x: (-x[1], x[0]))
+    return sorted_items[:n]
+```
+## text_stats.py
+```python
+import sys
+import os
+
+sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'lib'))
+from text import normalize, tokenize, count_freq, top_n
+
+sys.path.append(os.path.join(os.path.dirname(__file__)))
+from test import normalize_test, tokenize_test, count_freq__top_n_test
+
+
+for i in normalize_test:
+    print(normalize(i))
+for i in tokenize_test:
+    print(tokenize(i))
+for i in count_freq__top_n_test:
+    print(count_freq(i))
+    print(top_n(count_freq(i)))
+
+
+def main():
+    text = sys.stdin.readline().strip()  
+    if not text:
+        print("Всего слов: 0")
+        print("Уникальных слов: 0")
+        print("Топ-5:")
+        return
+    
+    normalized = normalize(text)
+    tokens = tokenize(normalized)
+    
+    total = len(tokens)
+    unique = len(set(tokens))
+    freq_dict = count_freq(tokens)
+    top_words = top_n(freq_dict, 5)
+    
+    print(f"Всего слов: {total}")
+    print(f"Уникальных слов: {unique}")
+    print("Топ-5:")
+    for word, count in top_words:
+        print(f"{word}:{count}")
+
+if __name__ == "__main__":
+    main()
+
+```
+### test.py
+```python
+normalize_test = [
+    "ПрИвЕт\nМИр\t",
+    "ёжик, Ёлка",
+    "Hello\r\nWorld",
+    "  двойные   пробелы  "
+]
+
+
+tokenize_test = [
+    "привет мир",
+    "hello,world!!!",
+    "по-настоящему круто",
+    "2025 год",
+    "emoji 😀 не слово"
+] 
+
+
+count_freq__top_n_test = [
+    ["a","b","a","c","b","a"],
+    ["bb","aa","bb","aa","cc"]
+]
+
+```
+
+
+#### Вывод:
+![Вывод:](./images/lab03/img.png)
