@@ -206,6 +206,7 @@ for i in test_input:
 
 # Лабораторная работа 3
 ## text.py
+* _файл для хранения функций_
 ```python
 import re  
 from typing import Dict, List, Tuple
@@ -249,6 +250,7 @@ def top_n(freq: dict[str, int], n: int = 5) -> list[tuple[str, int]]:
     return sorted_items[:n]
 ```
 ## text_stats.py
+* _файл с реализацией функций_
 ```python
 import sys
 import os
@@ -296,6 +298,7 @@ if __name__ == "__main__":
 
 ```
 ### test.py
+* _файл с тестами_
 ```python
 normalize_test = [
     "ПрИвЕт\nМИр\t",
