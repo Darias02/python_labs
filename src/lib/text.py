@@ -21,7 +21,7 @@ def normalize(text: str, *, casefold: bool = True, replacement: bool = True) -> 
 def tokenize(text: str) -> list[str]:
     if not text:
         return []
-    pattern = r"\w+(?:[''’]\w+)*"
+    pattern = r'\w+(?:-\w+)*'
     tokens = re.findall(pattern, text)
     
     return tokens
