@@ -231,7 +231,7 @@ def normalize(text: str, *, casefold: bool = True, replacement: bool = True) -> 
 def tokenize(text: str) -> list[str]:
     if not text:
         return []
-    pattern = r'\w+(?:-\w+)*'
+    pattern = r"\w+(?:[''’]\w+)*"
     tokens = re.findall(pattern, text)
     
     return tokens
@@ -251,7 +251,7 @@ def top_n(freq: dict[str, int], n: int = 5) -> list[tuple[str, int]]:
 ## text_stats.py
 * _файл с реализацией функций_
 ```python
-import sys
+iimport sys
 import os
 
 sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'lib'))
@@ -288,7 +288,7 @@ def main():
     
     print(f"Всего слов: {total}")
     print(f"Уникальных слов: {unique}")
-    print("Топ-5:")
+    print(f"Топ-{min(5, len(set(tokens)))}:")
     for word, count in top_words:
         print(f"{word}:{count}")
 

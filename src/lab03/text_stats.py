@@ -35,17 +35,9 @@ def main():
     
     print(f"Всего слов: {total}")
     print(f"Уникальных слов: {unique}")
-    print("Топ-5:")
+    print(f"Топ-{min(5, len(set(tokens)))}:")
     for word, count in top_words:
         print(f"{word}:{count}")
 
 if __name__ == "__main__":
     main()
-
-
-
-
-
-
-
-
