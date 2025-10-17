@@ -209,7 +209,6 @@ for i in test_input:
 * _файл для хранения функций_
 ```python
 import re  
-from typing import Dict, List, Tuple
 
 def normalize(text: str, *, casefold: bool = True, replacement: bool = True) -> str:
     if not text:
