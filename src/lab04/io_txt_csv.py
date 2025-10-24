@@ -22,7 +22,7 @@ def write_csv(rows: Iterable[Sequence], path: str | Path, header: tuple[str, ...
         if header is not None: #eсли передан заголовок
             w.writerow(header)
         for r in rows:
-            w.writerow(r)
+            w.writerow(r) # построчно записывает в csv
 
 
 
@@ -35,7 +35,7 @@ if __name__ == '__main__':
     except FileNotFoundError:
         print('Файл не нвйден')
     except Exception as e:
-        print('ошибка при чтении')
+        print('ошибка при чтении {e}')
     
     try:
         write_csv([('word','count'),('test',3)], 'data/check.csv')  # создаст CSV
