@@ -8,7 +8,6 @@ def read_text(path: str | Path, encoding: str = 'utf-8') -> str: #чтение �
 
 
 
-
 def write_csv(rows: Iterable[Sequence], path: str | Path, header: tuple[str, ...] | None = None) -> None:
     p = Path(path)
     rows = list(rows)

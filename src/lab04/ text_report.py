@@ -17,9 +17,7 @@ def report(input_path: Path, output_path: Path, encoding: str = 'utf-8') -> dict
             print('файл пустой')
             header = ('word', 'count')
             write_csv([], output_path, header)  # Только заголовок
-            return {}
-        
-        
+            return ''     
         freq = frequencies_from_text(text)
         sorted_counts = sorted_word_counts(freq)
         header = ('word', 'count') #заголовок
@@ -43,8 +41,7 @@ def main():
         frequencies = report(input_file, output_file)
         sum_words = sum(frequencies.values()) #кол-во слов
         unique_words = len(frequencies) #кол-во уникальных слов
-        top_words = top_n(frequencies, 5)
-        
+        top_words = top_n(frequencies, 5)        
         print(f'Всего слов: {sum_words}')
         print(f'Уникальных слов: {unique_words}')
         print('Топ-5:')
