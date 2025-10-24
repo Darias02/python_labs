@@ -326,3 +326,131 @@ count_freq__top_n_test = [
 
 #### Вывод:
 ![Вывод:](./images/lab03/img.png)
+
+# Лабораторная работа 4
+
+
+## файл io_txt_cvs.py
+```python
+import csv
+from pathlib import Path #для работы с путями файлов
+from typing import Iterable, Sequence
+
+def read_text(path: str | Path, encoding: str = 'utf-8') -> str: #чтение содержимого файла
+    path = Path(path)
+    return path.read_text(encoding=encoding)
+
+
+
+
+def write_csv(rows: Iterable[Sequence], path: str | Path, header: tuple[str, ...] | None = None) -> None:
+    p = Path(path)
+    rows = list(rows)
+    if rows:
+        first_len = len(rows[0])
+        for i, roww in enumerate(rows): #возвращает индекс, элемент
+            if len(roww) != first_len:
+                raise ValueError(f'Строка {i} имеет длину {len(roww)}, ожидалось {first_len}') 
+            
+    with p.open('w', newline='', encoding='utf-8') as f: #открытие файла для записи
+        w = csv.writer(f)
+        if header is not None: #eсли передан заголовок
+            w.writerow(header)
+        for r in rows:
+            w.writerow(r)
+
+
+
+if __name__ == '__main__':
+    print('тест')
+    try:
+        txt = read_text('data/lab04/input.txt')  # должен вернуть строку
+        print(f'Прочитано {len(txt)} символов')
+        print(f'Первые 50 символов: {txt[:50]}')
+    except FileNotFoundError:
+        print('Файл не нвйден')
+    except Exception as e:
+        print('ошибка при чтении')
+    
+    try:
+        write_csv([('word','count'),('test',3)], 'data/check.csv')  # создаст CSV
+    except Exception as e:
+        print('ошибка при создании CSV')
+```
+
+
+## файл text_report.py
+```python
+port sys
+from pathlib import Path
+from collections import Counter 
+sys.path.insert(0, str((Path(__file__).parent.parent))) #добавлят корень проекта в начало списка
+from lib.text import normalize, tokenize, top_n
+from lab04.io_txt_csv import read_text, write_csv
+def frequencies_from_text(text: str) -> dict[str, int]: #подсчитывает частоты слов
+    tokens = tokenize(normalize(text))
+    return Counter(tokens) 
+
+def sorted_word_counts(freq: dict[str, int]) -> list[tuple[str, int]]: #сортировка по убыванию частоты, по авфавиту
+    return sorted(freq.items(), key=lambda kv: (-kv[1], kv[0]))
+def report(input_path: Path, output_path: Path, encoding: str = 'utf-8') -> dict[str, int]: #очтёт
+    try:
+        text = read_text(input_path, encoding=encoding)
+        if not text.strip():
+            print('файл пустой')
+            header = ('word', 'count')
+            write_csv([], output_path, header)  # Только заголовок
+            return {}
+        
+        
+        freq = frequencies_from_text(text)
+        sorted_counts = sorted_word_counts(freq)
+        header = ('word', 'count') #заголовок
+        write_csv(sorted_counts, output_path, header)
+        return freq
+    except FileNotFoundError:
+        print(f'FileNotFoundError')
+        sys.exit(1) #завершение программы с ошибкой
+        
+    except Exception as e:
+        print(f'ошибка обработки {e}')
+        sys.exit(1)
+
+
+
+def main():
+    input_file = Path('data/lab04/input.txt')
+    output_file = Path('data/lab04/report.csv') #путь для выхода
+    print(f'...обработка файла: {input_file}')
+    try:
+        frequencies = report(input_file, output_file)
+        sum_words = sum(frequencies.values()) #кол-во слов
+        unique_words = len(frequencies) #кол-во уникальных слов
+        top_words = top_n(frequencies, 5)
+        
+        print(f'Всего слов: {sum_words}')
+        print(f'Уникальных слов: {unique_words}')
+        print('Топ-5:')
+
+        for word, count in top_words:
+            print(f'  {word}: {count}')
+    except Exception as e:
+        print(f'ошибка {e}')
+
+
+
+if __name__ == '__main__':
+    main()
+```
+
+
+### запуск 'Привет, мир! Привет!!!':
+![Вывод:](./images/lab04/1.png)
+![Вывод:](./images/lab04/1x.png)
+![Вывод:](./images/lab04/1xx.png)
+### запуск с пустым файлом input.txt:
+![Вывод:](./images/lab04/2.png)
+![Вывод:](./images/lab04/2x.png)
+![Вывод:](./images/lab04/2xx.png)
+### запуск с отсутствием файла input.txt:
+![Вывод:](./images/lab04/0.png)
