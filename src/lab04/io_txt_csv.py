@@ -17,7 +17,7 @@ def write_csv(rows: Iterable[Sequence], path: str | Path, header: tuple[str, ...
             if len(roww) != first_len:
                 raise ValueError(f'Строка {i} имеет длину {len(roww)}, ожидалось {first_len}') 
             
-    with p.open('w', newline='', encoding='utf-8') as f: #открытие файла для записи
+    with p.open('w', newline='', encoding='utf-8') as f: #открытие файла для записи 
         w = csv.writer(f)
         if header is not None: #eсли передан заголовок
             w.writerow(header)
