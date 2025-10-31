@@ -4,12 +4,16 @@ from typing import Iterable, Sequence
 
 def read_text(path: str | Path, encoding: str = 'utf-8') -> str: #чтение содержимого файла
     path = Path(path)
+    if path.suffix.lower() != '.txt':
+        raise ValueError(f"файл {path} должен иметь расширение .txt")
     return path.read_text(encoding=encoding)
 
 
 
 def write_csv(rows: Iterable[Sequence], path: str | Path, header: tuple[str, ...] | None = None) -> None:
-    p = Path(path)
+    path = Path(path)
+    if path.suffix.lower() != '.csv':
+        raise ValueError(f"файл {path} должен иметь расширение .csv")
     rows = list(rows)
     if rows:
         first_len = len(rows[0])
@@ -17,7 +21,7 @@ def write_csv(rows: Iterable[Sequence], path: str | Path, header: tuple[str, ...
             if len(roww) != first_len:
                 raise ValueError(f'Строка {i} имеет длину {len(roww)}, ожидалось {first_len}') 
             
-    with p.open('w', newline='', encoding='utf-8') as f: #открытие файла для записи 
+    with path.open('w', newline='', encoding='utf-8') as f: #открытие файла для записи 
         w = csv.writer(f)
         if header is not None: #eсли передан заголовок
             w.writerow(header)

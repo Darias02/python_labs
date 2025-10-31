@@ -12,6 +12,11 @@ def sorted_word_counts(freq: dict[str, int]) -> list[tuple[str, int]]: #сорт
     return sorted(freq.items(), key=lambda kv: (-kv[1], kv[0]))
 def report(input_path: Path, output_path: Path, encoding: str = 'utf-8') -> dict[str, int]: #очтёт
     try:
+        if input_path.suffix.lower() != '.txt':
+            raise ValueError(f"входной файл должен быть .txt, получен: {input_path.suffix}")
+        
+        if output_path.suffix.lower() != '.csv':
+            raise ValueError(f"выходной файл должен быть .csv, получен: {output_path.suffix}")
         text = read_text(input_path, encoding=encoding)
         if not text.strip():
             print('файл пустой')
