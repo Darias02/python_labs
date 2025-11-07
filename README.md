@@ -332,19 +332,20 @@ count_freq__top_n_test = [
 
 ## файл io_txt_cvs.py
 ```python
-import csv
+mport csv
 from pathlib import Path #для работы с путями файлов
 from typing import Iterable, Sequence
 
 def read_text(path: str | Path, encoding: str = 'utf-8') -> str: #чтение содержимого файла
     path = Path(path)
+    if path.suffix.lower() != '.txt':
+        raise ValueError(f"файл {path} должен иметь расширение .txt")
     return path.read_text(encoding=encoding)
 
-
-
-
 def write_csv(rows: Iterable[Sequence], path: str | Path, header: tuple[str, ...] | None = None) -> None:
-    p = Path(path)
+    path = Path(path)
+    if path.suffix.lower() != '.csv':
+        raise ValueError(f"файл {path} должен иметь расширение .csv")
     rows = list(rows)
     if rows:
         first_len = len(rows[0])
@@ -352,13 +353,12 @@ def write_csv(rows: Iterable[Sequence], path: str | Path, header: tuple[str, ...
             if len(roww) != first_len:
                 raise ValueError(f'Строка {i} имеет длину {len(roww)}, ожидалось {first_len}') 
             
-    with p.open('w', newline='', encoding='utf-8') as f: #открытие файла для записи
+    with path.open('w', newline='', encoding='utf-8') as f: #открытие файла для записи 
         w = csv.writer(f)
         if header is not None: #eсли передан заголовок
             w.writerow(header)
         for r in rows:
-            w.writerow(r)
-
+            w.writerow(r) # построчно записывает в csv
 
 
 if __name__ == '__main__':
@@ -370,7 +370,7 @@ if __name__ == '__main__':
     except FileNotFoundError:
         print('Файл не нвйден')
     except Exception as e:
-        print('ошибка при чтении')
+        print('ошибка при чтении {e}')
     
     try:
         write_csv([('word','count'),('test',3)], 'data/check.csv')  # создаст CSV
@@ -381,7 +381,7 @@ if __name__ == '__main__':
 
 ## файл text_report.py
 ```python
-port sys
+import sys
 from pathlib import Path
 from collections import Counter 
 sys.path.insert(0, str((Path(__file__).parent.parent))) #добавлят корень проекта в начало списка
@@ -395,14 +395,17 @@ def sorted_word_counts(freq: dict[str, int]) -> list[tuple[str, int]]: #сорт
     return sorted(freq.items(), key=lambda kv: (-kv[1], kv[0]))
 def report(input_path: Path, output_path: Path, encoding: str = 'utf-8') -> dict[str, int]: #очтёт
     try:
+        if input_path.suffix.lower() != '.txt':
+            raise ValueError(f"входной файл должен быть .txt, получен: {input_path.suffix}")
+        
+        if output_path.suffix.lower() != '.csv':
+            raise ValueError(f"выходной файл должен быть .csv, получен: {output_path.suffix}")
         text = read_text(input_path, encoding=encoding)
         if not text.strip():
             print('файл пустой')
             header = ('word', 'count')
             write_csv([], output_path, header)  # Только заголовок
-            return {}
-        
-        
+            return ''     
         freq = frequencies_from_text(text)
         sorted_counts = sorted_word_counts(freq)
         header = ('word', 'count') #заголовок
@@ -417,7 +420,6 @@ def report(input_path: Path, output_path: Path, encoding: str = 'utf-8') -> dict
         sys.exit(1)
 
 
-
 def main():
     input_file = Path('data/lab04/input.txt')
     output_file = Path('data/lab04/report.csv') #путь для выхода
@@ -426,8 +428,7 @@ def main():
         frequencies = report(input_file, output_file)
         sum_words = sum(frequencies.values()) #кол-во слов
         unique_words = len(frequencies) #кол-во уникальных слов
-        top_words = top_n(frequencies, 5)
-        
+        top_words = top_n(frequencies, 5)        
         print(f'Всего слов: {sum_words}')
         print(f'Уникальных слов: {unique_words}')
         print('Топ-5:')
@@ -436,8 +437,6 @@ def main():
             print(f'  {word}: {count}')
     except Exception as e:
         print(f'ошибка {e}')
-
-
 
 if __name__ == '__main__':
     main()
