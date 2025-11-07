@@ -511,7 +511,7 @@ def json_to_csv(json_path: str, csv_path: str) -> None:
     
     try:
         with csv_file.open('w', encoding='utf-8', newline='') as f:
-            writer = csv.DictWriter(f, fieldnames=fieldnames) # Создаем DictWriter с определенными колонками
+            writer = csv.DictWriter(f, fieldnames=fieldnames) # Создание DictWriter с определенными колонками
             writer.writeheader()# запись заголовока
             
             for item in data:
@@ -530,7 +530,7 @@ def csv_to_json(csv_path: str, json_path: str) -> None:
     json_file = Path(json_path)
     
     try:
-        with csv_file.open('r', encoding='utf-8', newline='') as f:  # открываем CSV!
+        with csv_file.open('r', encoding='utf-8', newline='') as f: 
             sample = f.read(1024) # определение диалекта
             dialect = csv.Sniffer().sniff(sample)
             f.seek(0) # возвращаемся к началу после sniff
@@ -601,7 +601,7 @@ def column_width(worksheet): # автоматическая ширина кол�
         max_length = 0
         column_letter = get_column_letter(column[0].column)
         
-        # Находим максимальную длину текста в колонке
+        #максимальная длина текста в колонке
         for cell in column:
             try:
                 if cell.value is not None:
@@ -639,7 +639,6 @@ def csv_to_xlsx(csv_path: str, xlsx_path: str) -> None:
     except Exception as e:
         raise ValueError(f'Ошибка конвертации CSV -> XLSX: {str(e)}')
 
-# Тестируем функцию
 if __name__ == '__main__':
     try:
         csv_to_xlsx(
@@ -648,7 +647,6 @@ if __name__ == '__main__':
         )
         print('Тест CSV → XLSX')
         
-        # Дополнительный тест с cities.csv
         csv_to_xlsx(
             'data/samples/cities.csv',
             'data/out/cities.xlsx'

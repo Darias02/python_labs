@@ -11,7 +11,7 @@ def column_width(worksheet): # автоматическая ширина кол�
         max_length = 0
         column_letter = get_column_letter(column[0].column)
         
-        # Находим максимальную длину текста в колонке
+        #максимальная длина текста в колонке
         for cell in column:
             try:
                 if cell.value is not None:
@@ -49,7 +49,6 @@ def csv_to_xlsx(csv_path: str, xlsx_path: str) -> None:
     except Exception as e:
         raise ValueError(f'Ошибка конвертации CSV -> XLSX: {str(e)}')
 
-# Тестируем функцию
 if __name__ == '__main__':
     try:
         csv_to_xlsx(
@@ -58,7 +57,6 @@ if __name__ == '__main__':
         )
         print('Тест CSV → XLSX')
         
-        # Дополнительный тест с cities.csv
         csv_to_xlsx(
             'data/samples/cities.csv',
             'data/out/cities.xlsx'
