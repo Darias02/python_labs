@@ -29,6 +29,11 @@ def csv_to_xlsx(csv_path: str, xlsx_path: str) -> None:
     csv_file = Path(csv_path)
     if not csv_file.exists():
         raise FileNotFoundError(f'CSV файл не найден: {csv_path}')
+    if csv_file.suffix.lower() != '.csv':
+        raise ValueError(f'Файл {csv_file} не csv')
+    xlsx_file = Path(xlsx_path)
+    if xlsx_file.suffix.lower() != '.xlsx':
+        raise ValueError(f'Файл {xlsx_file} не xlsx')
     wb = Workbook()
     ws = wb.active
     ws.title = 'Sheet1' 
@@ -48,6 +53,7 @@ def csv_to_xlsx(csv_path: str, xlsx_path: str) -> None:
         
     except Exception as e:
         raise ValueError(f'Ошибка конвертации CSV -> XLSX: {str(e)}')
+    
 
 if __name__ == '__main__':
     try:
@@ -64,4 +70,4 @@ if __name__ == '__main__':
         print('Тест cities.csv → XLSX')
         
     except Exception as e:
-        print(f'Ошибка: {e}')
+        print(f'ошибка: {e}')
