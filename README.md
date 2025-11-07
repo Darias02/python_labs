@@ -480,10 +480,10 @@ def json_to_csv(json_path: str, csv_path: str) -> None:
     csv_file = Path(csv_path)
     if not json_file.exists(): # проверка существует ли исходный JSON файл
         raise FileNotFoundError(f'JSON файл не найден: {json_path}')
-    data = None # хранение данных из JSON
+    data = None 
     
     try:
-        with json_file.open('r', encoding='utf-8') as f: # чтение JSON файла
+        with json_file.open('r', encoding='utf-8') as f: 
             data = json.load(f) # загружаем JSON данные
             
     except json.JSONDecodeError as e:
