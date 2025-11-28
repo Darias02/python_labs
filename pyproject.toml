@@ -1,0 +1,4 @@
+[project.optional-dependencies]
+dev = [
+  "black>=24.0",
+]
