@@ -1,17 +1,12 @@
-# src/lab06/cli_text.py
-"""
-cli для работы с текстом: cat и stats.
-использует функции normalize, tokenize, count_freq, top_n из lab03
-"""
 import argparse
 import sys
 from pathlib import Path
 
-# импортируем функции из lab03
+
 from src.lib.text import normalize, tokenize, count_freq, top_n
 
 
-# команда cat - выводит файл построчно, с опцией нумерации
+# команда cat
 def cmd_cat(path: Path, number: bool):
     if not path.exists():
         raise FileNotFoundError(f"файл не найден: {path}")
@@ -25,7 +20,7 @@ def cmd_cat(path: Path, number: bool):
                 print(line)
 
 
-# команда stats - анализирует частоты слов
+# команда stats
 def cmd_stats(path: Path, top: int):
     if not path.exists():
         raise FileNotFoundError(f"файл не найден: {path}")
@@ -46,7 +41,7 @@ def cmd_stats(path: Path, top: int):
 
 # создаём парсер аргументов
 def build_parser():
-    parser = argparse.ArgumentParser(description="cli для cat и stats (lab06)")
+    parser = argparse.ArgumentParser(description="cli для cat и stats")
     sub = parser.add_subparsers(dest="cmd")
 
     # подкоманда cat

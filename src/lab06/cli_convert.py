@@ -1,9 +1,3 @@
-# src/lab06/cli_convert.py
-"""
-cli для конвертации форматов: json2csv, csv2json, csv2xlsx
-только использует функции из lab05
-"""
-
 import argparse
 import sys
 from pathlib import Path
@@ -36,7 +30,6 @@ def build_parser():
     return parser
 
 
-# main - точка входа
 def main(argv=None):
     argv = argv or sys.argv[1:]
     parser = build_parser()
@@ -45,13 +38,13 @@ def main(argv=None):
     try:
         if args.cmd == "json2csv":
             json_to_csv(args.input, args.output)
-            print(f"ok: {args.input} -> {args.output}")
+            print(f"{args.input} -> {args.output}")
         elif args.cmd == "csv2json":
             csv_to_json(args.input, args.output)
-            print(f"ok: {args.input} -> {args.output}")
+            print(f"{args.input} -> {args.output}")
         elif args.cmd == "csv2xlsx":
             csv_to_xlsx(args.input, args.output)
-            print(f"ok: {args.input} -> {args.output}")
+            print(f"{args.input} -> {args.output}")
         else:
             parser.print_help()
     except FileNotFoundError as e:

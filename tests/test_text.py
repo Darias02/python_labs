@@ -43,7 +43,7 @@ def test_tokenize_basic(source, expected):
         (["same", "same", "same"], {"same": 3}),
     ],
 )
-def test_count_freq_and_top_n(source, expected):
+def test_count_freq(source, expected):
     assert count_freq(source) == expected
 
 
@@ -56,5 +56,5 @@ def test_count_freq_and_top_n(source, expected):
         ({"x": 5}, [("x", 5)]),
     ],
 )
-def test_top_n_tie_breaker(source, expected):
+def test_top_n(source, expected):
     assert top_n(source) == expected
