@@ -826,10 +826,15 @@ if __name__ == "__main__":
 ```
 ### терминал:
 ![Вывод:](./images/lab06/cat.png)
+
 ![Вывод:](./images/lab06/stats.png)
+
 ![Вывод:](./images/lab06/csv2json.png)
+
 ![Вывод:](./images/lab06/csv2xlsx.png)
+
 ![Вывод:](./images/lab06/json2csv.png)
+
 ![Вывод:](./images/lab06/help.png)
 
 
@@ -900,9 +905,14 @@ def test_top_n(source, expected):
 ```
 ### терминал:
 ![Вывод:](./images/lab07/test_nb.png)
+
+
 ![Вывод:](./images/lab07/test_tb.png)
+
 ![Вывод:](./images/lab07/test_cf.png)
+
 ![Вывод:](./images/lab07/test_tn.png)
+
 
 
 ## файл test_json_csv.py
@@ -974,9 +984,14 @@ def test_nonexistent_file(tmp_path: Path, func):
 ```
 ### терминал:
 ![Вывод:](./images/lab07/test_jtcr.png)
+
 ![Вывод:](./images/lab07/test_if.png)
+
 ![Вывод:](./images/lab07/test_nf.png)
 
+
+
 ## Проверка на соответствие кода стилю black:
+
 ![Вывод:](./images/lab07/black.png) 
 
