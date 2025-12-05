@@ -47,7 +47,6 @@ class Student:
             raise TypeError(
                 f"GPA должен быть числом, получено: {type(self.gpa).__name__}"
             )
-
         if not (0 <= self.gpa <= 5):
             raise ValueError(f"gpa must be between 0 and 5, got {self.gpa}")
         try:
