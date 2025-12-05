@@ -18,7 +18,7 @@ class Student:
                 "ожидается: YYYY-MM-DD"
             )
         if not (0 <= self.gpa <= 5):
-            raise ValueError(f"GPA должен быть 0-5, получен: {self.gpa}")
+            raise ValueError(f"GPA должен быть в диапазоне 0-5, получен: {self.gpa}")
 
     def age(self) -> int:
         birth = datetime.strptime(self.birthdate, "%Y-%m-%d").date()
@@ -48,12 +48,12 @@ class Student:
                 f"GPA должен быть числом, получено: {type(self.gpa).__name__}"
             )
         if not (0 <= self.gpa <= 5):
-            raise ValueError(f"gpa must be between 0 and 5, got {self.gpa}")
+            raise ValueError(f"GPA должен быть в диапазоне 0–5, получен: {self.gpa}")
         try:
             datetime.strptime(self.birthdate, "%Y-%m-%d")
         except ValueError:
             raise ValueError(
-                f"birthdate format must be YYYY-MM-DD, got {self.birthdate}"
+                f"формат даты рождения должен быть YYYY-MM-DD, получено: {self.birthdate}"
             )
         return {
             "fio": self.fio,
