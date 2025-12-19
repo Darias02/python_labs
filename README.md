@@ -1501,3 +1501,7 @@ def main():
 if __name__ == "__main__":
     main()
 ```
+
+### вывод: 
+![Вывод:](./images/lab10/1.png)
+![Вывод:](./images/lab10/2.png)
