@@ -104,7 +104,7 @@ def main():
     print(f"добавили 5 в начало: {lst}")
 
     # insert
-    lst.insert(2, 15)  # Между 10 и 20
+    lst.insert(2, 15) 
     print(f"вставили 15 на позицию 2: {lst}")
 
     # remove_at
