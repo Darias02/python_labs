@@ -1336,35 +1336,29 @@ def main():
     print("Stack")
     s = Stack()
 
-    # Показываем push и peek
     s.push(1)
     s.push(2)
     s.push(3)
     print(f"добавили 1, 2, 3: {s}")
     print(f"верхний элемент: {s.peek()}")
 
-    # Показываем pop
     print(f"удаляем: {s.pop()}")
     print(f"теперь стек: {s}")
 
-    # Показываем is_empty
     print(f"стек пуст? {s.is_empty()}")
 
     print("\nQueue (Очередь)")
     q = Queue()
 
-    # Показываем enqueue и peek
     q.enqueue("A")
     q.enqueue("B")
     q.enqueue("C")
     print(f"добавили A, B, C: {q}")
     print(f"первый в очереди: {q.peek()}")
 
-    # Показываем dequeue
     print(f"обслуживаем: {q.dequeue()}")
     print(f"теперь очередь: {q}")
 
-    # Показываем is_empty
     print(f"очередь пуста? {q.is_empty()}")
 
 
